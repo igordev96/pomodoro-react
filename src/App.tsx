@@ -16,7 +16,6 @@ function App() {
           <Header handleDarkTheme={handleDarkTheme} />
           <div className="flex w-full min-h-[594px] gap-9">
             <BigCard />
-            <BigCard />
           </div>
         </div>
       </div>
