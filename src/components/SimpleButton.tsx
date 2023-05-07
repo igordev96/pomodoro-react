@@ -12,6 +12,10 @@ export interface ISimpleButton extends HTMLProps<HTMLButtonElement> {
 export function SimpleButton(props: ISimpleButton) {
   const { type, className, ...rest } = props;
 
+  const isNotHourGlassOrRocket = () => {
+    return type !== "hourglass" && type !== "rocket";
+  };
+
   const handleButtonIcon = () => {
     switch (type) {
       case "sun":
@@ -40,7 +44,11 @@ export function SimpleButton(props: ISimpleButton) {
 
   return (
     <button
-      className={`dark:bg-zinc-800 bg-zinc-100 p-2 rounded-md ${className}`}
+      className={`dark:bg-zinc-800 bg-zinc-100 p-2 rounded-md ${
+        isNotHourGlassOrRocket()
+          ? "dark:hover:bg-opacity-40 hover:bg-zinc-200 [&>*:nth-child(1)]:hover:text-zinc-600 transition"
+          : "cursor-default"
+      } ${className}`}
       {...rest}
     >
       {handleButtonIcon()}
