@@ -15,8 +15,8 @@ function App() {
         <div className="max-w-[1440px] h-screen w-screen py-14 px-40">
           <Header handleDarkTheme={handleDarkTheme} />
           <div className="flex w-full min-h-[594px] gap-9">
-            <BigCard />
-            <BigCard />
+            <BigCard type="session_data" />
+            <BigCard type="tasks_list" />
           </div>
         </div>
       </div>
