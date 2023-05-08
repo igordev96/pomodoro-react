@@ -51,7 +51,7 @@ export function Badge(props: IBadge) {
 
   return (
     <div
-      className={`${handleClasses()} flex items-center gap-2 font-semibold text-sm bg-opacity-10 border rounded px-2 py-1`}
+      className={`${handleClasses()} flex items-center gap-2 font-semibold text-sm bg-opacity-10 border rounded select-none cursor-default px-2 py-1`}
     >
       {handleContent()}
     </div>
