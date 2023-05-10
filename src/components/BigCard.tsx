@@ -1,5 +1,6 @@
 import { Badge } from "./Badge";
 import { SimpleButton } from "./SimpleButton";
+import { StopWatch } from "./StopWatch";
 
 export interface IBigCard {
   type?: "session_data" | "tasks_list";
@@ -45,6 +46,9 @@ export function BigCard(props: IBigCard) {
             </div>
             <Badge type="short_break" />
           </div>
+        </div>
+        <div className="flex flex-1 items-center justify-center">
+          <StopWatch percentage={76} size={224} strokeWidth={15} />
         </div>
       </div>
     );
