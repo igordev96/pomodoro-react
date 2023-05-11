@@ -1,4 +1,4 @@
-import { HTMLProps } from "react";
+import { HTMLProps, useMemo } from "react";
 import { MdOutlineWbSunny, MdTranslate } from "react-icons/md";
 import { FiGithub } from "react-icons/fi";
 import { IoHourglassOutline, IoRocketSharp } from "react-icons/io5";
@@ -12,46 +12,36 @@ export interface ISimpleButton extends HTMLProps<HTMLButtonElement> {
 export function SimpleButton(props: ISimpleButton) {
   const { type, className, ...rest } = props;
 
-  const isNotHourGlassOrRocket = () => {
+  const isNotHourGlassOrRocket = useMemo(() => {
     return type !== "hourglass" && type !== "rocket";
-  };
+  }, [type]);
 
-  const handleButtonIcon = () => {
+  const ButtonIcon = useMemo(() => {
     switch (type) {
       case "sun":
-        return (
-          <MdOutlineWbSunny className="w-4 h-4 dark:text-zinc-500 text-zinc-400" />
-        );
+        return MdOutlineWbSunny;
       case "github":
-        return (
-          <FiGithub className="w-4 h-4 dark:text-zinc-500 text-zinc-400" />
-        );
+        return FiGithub;
       case "hourglass":
-        return (
-          <IoHourglassOutline className="w-4 h-4 dark:text-zinc-500 text-zinc-400" />
-        );
+        return IoHourglassOutline;
       case "rocket":
-        return (
-          <IoRocketSharp className="w-4 h-4 dark:text-zinc-500 text-zinc-400" />
-        );
+        return IoRocketSharp;
       case "translate":
       default:
-        return (
-          <MdTranslate className="w-4 h-4 dark:text-zinc-500 text-zinc-400" />
-        );
+        return MdTranslate;
     }
-  };
+  }, [type]);
 
   return (
     <button
       className={`dark:bg-zinc-800 bg-zinc-100 p-2 rounded-md ${
-        isNotHourGlassOrRocket()
+        isNotHourGlassOrRocket
           ? "dark:hover:bg-opacity-40 hover:bg-zinc-200 [&>*:nth-child(1)]:hover:text-zinc-600 transition"
           : "cursor-default"
       } ${className}`}
       {...rest}
     >
-      {handleButtonIcon()}
+      <ButtonIcon className="w-4 h-4 dark:text-zinc-500 text-zinc-400" />
     </button>
   );
 }
