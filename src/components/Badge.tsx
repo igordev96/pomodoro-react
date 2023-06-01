@@ -1,7 +1,8 @@
 import { TbBrain } from "react-icons/tb";
 import { FiCoffee } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
 
-type BreakType = "focus" | "short_break" | "long_break";
+export type BreakType = "focus" | "short_break" | "long_break";
 
 export interface IBadge {
   type?: BreakType;
@@ -9,6 +10,8 @@ export interface IBadge {
 
 export function Badge(props: IBadge) {
   const { type = "focus" } = props;
+
+  const { t } = useTranslation();
 
   const handleClasses = () => {
     switch (type) {
@@ -28,14 +31,14 @@ export function Badge(props: IBadge) {
         return (
           <>
             <FiCoffee className="text-base" />
-            <h3>Long break</h3>
+            <h3>{t("long_break")}</h3>
           </>
         );
       case "short_break":
         return (
           <>
             <FiCoffee className="text-base" />
-            <h3>Short break</h3>
+            <h3>{t("short_break")}</h3>
           </>
         );
       case "focus":
@@ -43,7 +46,7 @@ export function Badge(props: IBadge) {
         return (
           <>
             <TbBrain className="text-base" />
-            <h3>Focus</h3>
+            <h3>{t("focus")}</h3>
           </>
         );
     }

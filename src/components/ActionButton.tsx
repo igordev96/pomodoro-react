@@ -1,15 +1,15 @@
 import { useMemo } from "react";
-import { IoPlayOutline } from "react-icons/io5";
-import { HiOutlineCog6Tooth } from "react-icons/hi2";
+import { IoPlayOutline, IoPlaySkipForwardOutline } from "react-icons/io5";
 import { GiClockwiseRotation } from "react-icons/gi";
 
 export interface IActionButton {
-  type: "COG" | "PLAY" | "RESET";
+  type: "NEXT" | "PLAY" | "RESET";
   isBig?: boolean;
+  onClick?(): void;
 }
 
 export function ActionButton(props: IActionButton) {
-  const { type, isBig = false } = props;
+  const { type, isBig = false, onClick = () => {} } = props;
 
   const classes = useMemo(() => {
     return isBig
@@ -21,8 +21,8 @@ export function ActionButton(props: IActionButton) {
     switch (type) {
       case "RESET":
         return GiClockwiseRotation;
-      case "COG":
-        return HiOutlineCog6Tooth;
+      case "NEXT":
+        return IoPlaySkipForwardOutline;
       case "PLAY":
       default:
         return IoPlayOutline;
@@ -32,6 +32,7 @@ export function ActionButton(props: IActionButton) {
   return (
     <div
       className={`${classes} transition-colors hover:text-white text-zinc-400 cursor-pointer rounded flex items-center justify-center`}
+      onClick={onClick}
     >
       <Icon />
     </div>
