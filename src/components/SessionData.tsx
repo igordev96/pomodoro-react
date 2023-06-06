@@ -46,7 +46,7 @@ export function SessionData(props: ISessionData) {
       </div>
       <div className="flex flex-1 items-center justify-center">
         <StopWatch
-          finalTime={cycle.time}
+          finalTime={cycle.time * 60}
           size={224}
           strokeWidth={15}
           setCycle={setCycle}
